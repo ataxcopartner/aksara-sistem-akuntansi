@@ -1,0 +1,314 @@
+<UserControl x:Class="Aksara.Desktop.Views.PurchaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="Tahoma"
+             FontSize="12">
+    <UserControl.Resources>
+        <Style x:Key="PurchaseButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="2,0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Margin" Value="3,0,0,0" />
+        </Style>
+        <Style x:Key="PurchaseTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="5,0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Height" Value="23" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="White" />
+        </Style>
+        <Style x:Key="PurchaseReadOnlyBoxStyle" TargetType="TextBox" BasedOn="{StaticResource PurchaseTextBoxStyle}">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Foreground" Value="#8A8A8A" />
+        </Style>
+        <Style x:Key="PurchaseValueBoxStyle" TargetType="TextBlock">
+            <Setter Property="Height" Value="23" />
+            <Setter Property="Padding" Value="4,3,4,0" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="4,0" />
+            <Setter Property="Background" Value="#F7F7F7" />
+            <Setter Property="BorderBrush" Value="#B8C0CA" />
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="3,0" />
+            <Setter Property="BorderBrush" Value="#D2D2D2" />
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+        </Style>
+        <Style x:Key="PurchaseFieldLabelStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,12,0" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+        <Style x:Key="PurchaseSecondaryFieldLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource PurchaseFieldLabelStyle}">
+            <Setter Property="Margin" Value="18,0,12,0" />
+        </Style>
+        <Style x:Key="PurchaseInlineFieldLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource PurchaseFieldLabelStyle}">
+            <Setter Property="Margin" Value="20,0,14,0" />
+        </Style>
+        <Style x:Key="PurchaseUnitLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource PurchaseFieldLabelStyle}">
+            <Setter Property="Margin" Value="8,0,0,0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#F0F0F0" ClipToBounds="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34" />
+            <RowDefinition Height="108" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="38" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Height="34" Margin="8,0,8,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="245" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="235" />
+                <ColumnDefinition Width="45" />
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#808080" BorderThickness="1,1,0,1" Background="#F7F7F7">
+                <CheckBox Content="Exclusive Mode" VerticalAlignment="Center" Margin="8,0,0,0" />
+            </Border>
+            <Border Grid.Column="1" BorderBrush="#808080" BorderThickness="1">
+                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="16,0,0,0" />
+            </Border>
+            <Border Grid.Column="2" BorderBrush="#808080" BorderThickness="0,1,1,1">
+                <TextBlock x:Name="ModeStatusText" Text="TAMBAH DATA" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Column="3" BorderBrush="#808080" BorderThickness="0,1,1,1">
+                <TextBlock x:Name="ServerStatusText" Text="TOTAL DATA 0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Column="4" BorderBrush="#808080" BorderThickness="0,1,1,1">
+                <TextBlock Text="▥" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="1" Margin="8,0,8,8" BorderBrush="#B8B8B8" BorderThickness="1" Background="#F7F7F7">
+            <Grid Margin="8,6,8,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="74" />
+                    <ColumnDefinition Width="155" />
+                    <ColumnDefinition Width="102" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="78" />
+                    <ColumnDefinition Width="68" />
+                    <ColumnDefinition Width="116" />
+                    <ColumnDefinition Width="112" />
+                    <ColumnDefinition Width="44" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="29" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Tgl.Fak." Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <DatePicker x:Name="DocumentDatePicker" Grid.Column="1" SelectedDate="{Binding DocumentDate}" FontSize="12" Padding="4,0" Height="24" />
+                <TextBlock Grid.Column="2" Text="Kode Supl." Style="{StaticResource PurchaseSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="SupplierCodeBox" Grid.Column="3" Style="{StaticResource PurchaseTextBoxStyle}" PreviewKeyDown="SupplierCodeBox_PreviewKeyDown" MouseDoubleClick="SupplierCodeBox_MouseDoubleClick" />
+                <TextBlock Grid.Column="5" Text="Trans." Style="{StaticResource PurchaseSecondaryFieldLabelStyle}" />
+                <ComboBox x:Name="TransactionType" Grid.Column="6" SelectedIndex="1" FontSize="12" Height="24" Padding="8,0,4,0" HorizontalContentAlignment="Center" SelectionChanged="TransactionType_SelectionChanged">
+                    <ComboBoxItem Content="T" />
+                    <ComboBoxItem Content="K" />
+                </ComboBox>
+                <TextBlock Grid.Column="7" Text="J.Tempo" Style="{StaticResource PurchaseInlineFieldLabelStyle}" />
+                <DatePicker x:Name="DueDatePicker" Grid.Column="8" SelectedDate="{Binding DueDate}" FontSize="12" Padding="4,0" Height="24" />
+                <TextBox x:Name="DueDaysBox" Grid.Column="9" Text="30" HorizontalContentAlignment="Right" Style="{StaticResource PurchaseTextBoxStyle}" LostFocus="DueDaysBox_LostFocus" />
+                <TextBlock Grid.Column="10" Text="Hr." Style="{StaticResource PurchaseUnitLabelStyle}" />
+
+                <TextBlock Grid.Row="1" Text="No.Fak." Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBox x:Name="DocumentNumberBox" Grid.Row="1" Grid.Column="1" CharacterCasing="Upper" Style="{StaticResource PurchaseTextBoxStyle}" TextChanged="DocumentNumberBox_TextChanged" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Toko/PT" Style="{StaticResource PurchaseSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="SupplierNameBox" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" Style="{StaticResource PurchaseReadOnlyBoxStyle}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="Alamat" Style="{StaticResource PurchaseSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="SupplierAddressBox" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="8" Style="{StaticResource PurchaseReadOnlyBoxStyle}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="8,0,8,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="360" />
+            </Grid.ColumnDefinitions>
+            <TabControl x:Name="DetailTabs" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,365,0" SelectionChanged="DetailTabs_SelectionChanged">
+                <TabItem Header="Rincian" />
+                <TabItem Header="Catatan" />
+            </TabControl>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="#808080" BorderThickness="1" Background="White" Margin="5,2,0,5">
+                <TextBlock x:Name="TransactionBanner" Text="KREDIT" Foreground="Red" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <DataGrid x:Name="LinesGrid"
+                          ItemsSource="{Binding Lines}" AutoGenerateColumns="False" CanUserAddRows="False"
+                          RowHeight="23" ColumnHeaderHeight="25" GridLinesVisibility="All" HeadersVisibility="Column"
+                          CellEditEnding="Lines_CellEditEnding" PreviewKeyDown="LinesGrid_PreviewKeyDown" MouseDoubleClick="LinesGrid_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lok." Binding="{Binding WarehouseCode}" Width="48" />
+                        <DataGridTextColumn Header="Kode Barang" Binding="{Binding ItemCode}" Width="120" />
+                        <DataGridTextColumn Header="Nama Barang" Binding="{Binding ItemName}" Width="*" MinWidth="300" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Byk.Koli" Binding="{Binding PackageQuantity, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="75" />
+                        <DataGridTextColumn Header="Banyak" Binding="{Binding Quantity, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="75" />
+                        <DataGridTextColumn Header="Sat." Binding="{Binding Unit}" Width="45" />
+                        <DataGridTextColumn Header="Harga" Binding="{Binding UnitPrice, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="95" />
+                        <DataGridTextColumn Header="Disc." Binding="{Binding DiscountPercent, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="70" />
+                        <DataGridTextColumn Header="Jumlah" Binding="{Binding Total, StringFormat=N0}" IsReadOnly="True" Width="105" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="LineNotesGrid" ItemsSource="{Binding Lines}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeight="23" ColumnHeaderHeight="25" GridLinesVisibility="All" HeadersVisibility="Column" Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Kode Barang" Binding="{Binding ItemCode}" Width="165" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Nama Barang" Binding="{Binding ItemName}" Width="*" MinWidth="330" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Banyak" Binding="{Binding Quantity, StringFormat=N2}" Width="100" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Sat." Binding="{Binding Unit}" Width="70" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Catatan" Binding="{Binding LineNote, UpdateSourceTrigger=PropertyChanged}" Width="360" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="8,8,8,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="255" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="190" />
+                <ColumnDefinition Width="190" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="#B8B8B8" BorderThickness="1" Background="#F7F7F7" Margin="0,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Catatan" Margin="7,3,0,0" />
+                    <TextBox x:Name="NotesBox" Grid.Row="1" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="0" Margin="8,0,8,8" FontSize="12" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="#B8B8B8" BorderThickness="1" Background="#F7F7F7" Margin="0,0,8,0">
+                <Grid Margin="7,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="66" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="27" />
+                        <RowDefinition Height="27" />
+                        <RowDefinition Height="27" />
+                        <RowDefinition Height="27" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Disc." FontWeight="Bold" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                    <TextBlock Grid.Row="1" Text="Percent" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                    <TextBox x:Name="DiscountPercentBox" Grid.Row="1" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource PurchaseTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+                    <TextBlock Grid.Row="2" Text="Rp." Style="{StaticResource PurchaseFieldLabelStyle}" />
+                    <TextBox x:Name="DiscountAmountBox" Grid.Row="2" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource PurchaseTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+                    <TextBlock Grid.Row="3" Text="Tot." Style="{StaticResource PurchaseFieldLabelStyle}" />
+                    <TextBlock x:Name="DiscountTotalText" Grid.Row="3" Grid.Column="1" Text="0" Style="{StaticResource PurchaseValueBoxStyle}" />
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="2" Margin="0,0,8,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="62" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="28" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Netto" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBlock x:Name="NetBeforeTaxText" Grid.Column="1" Text="0" FontWeight="Bold" Style="{StaticResource PurchaseValueBoxStyle}" />
+                <TextBlock Grid.Row="1" Text="Kas" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource PurchaseValueBoxStyle}" />
+            </Grid>
+
+            <Grid Grid.Column="3" Margin="0,0,8,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="28" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="PPN %" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBox x:Name="TaxPercentBox" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource PurchaseTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+                <TextBlock Grid.Row="1" Text="U.M." Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBox x:Name="DownPaymentBox" Grid.Row="1" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource PurchaseTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="82" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="28" />
+                    <RowDefinition Height="47" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Net + PPN" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBlock x:Name="TotalText" Grid.Column="1" Text="0" FontWeight="Bold" Style="{StaticResource PurchaseValueBoxStyle}" />
+                <TextBlock Grid.Row="1" Text="UM Order" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource PurchaseValueBoxStyle}" />
+                <TextBlock Grid.Row="2" Text="Cicilan" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="0" FontWeight="Bold" Style="{StaticResource PurchaseValueBoxStyle}" />
+                <TextBlock Grid.Row="3" Text="Sisa&#x0a;Bayar" Style="{StaticResource PurchaseFieldLabelStyle}" />
+                <Border Grid.Row="3" Grid.Column="1" Background="White" MinWidth="160">
+                    <TextBlock x:Name="BalanceText" Text="0" FontSize="25" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" Padding="4,0,8,0" />
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="4" Margin="8,8,8,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource PurchaseButtonStyle}" Content="◀◀" Width="34" Click="NavigateFirst_Click" />
+                <Button Style="{StaticResource PurchaseButtonStyle}" Content="◀" Width="34" Click="NavigatePrevious_Click" />
+                <Button Style="{StaticResource PurchaseButtonStyle}" Content="●" Width="34" Click="NavigateLookup_Click" />
+                <Button Style="{StaticResource PurchaseButtonStyle}" Content="▶" Width="34" Click="NavigateNext_Click" />
+                <Button Style="{StaticResource PurchaseButtonStyle}" Content="▶▶" Width="34" Click="NavigateLast_Click" />
+            </StackPanel>
+            <UniformGrid Grid.Column="1" Rows="1" Columns="8" HorizontalAlignment="Right" Width="760">
+                <Button Style="{StaticResource PurchaseButtonStyle}" Click="Search_Click" ToolTip="ALT+I"><AccessText Text="Car_i" /></Button>
+                <Button Style="{StaticResource PurchaseButtonStyle}" Click="Add_Click" ToolTip="ALT+A"><AccessText Text="T_ambah" /></Button>
+                <Button Style="{StaticResource PurchaseButtonStyle}" Click="Cancel_Click" ToolTip="ALT+B"><AccessText Text="_Batal" /></Button>
+                <Button x:Name="SaveButton" Style="{StaticResource PurchaseButtonStyle}" Click="Save_Click" ToolTip="ALT+S"><AccessText Text="_Simpan" /></Button>
+                <Button x:Name="SavePrintButton" Style="{StaticResource PurchaseButtonStyle}" Click="SavePrint_Click" ToolTip="ALT+K"><AccessText Text="Smpn&amp;Ct_k" /></Button>
+                <Button x:Name="DeleteButton" Style="{StaticResource PurchaseButtonStyle}" Click="Delete_Click" ToolTip="ALT+H"><AccessText Text="_Hapus" /></Button>
+                <Button x:Name="RestoreButton" Style="{StaticResource PurchaseButtonStyle}" Click="Restore_Click" ToolTip="ALT+L"><AccessText Text="Bt_l.Hapus" /></Button>
+                <Button Style="{StaticResource PurchaseButtonStyle}" Click="Close_Click" ToolTip="ALT+U"><AccessText Text="Tut_up" /></Button>
+            </UniformGrid>
+        </Grid>
+
+        <Border Grid.Row="5" Background="White" BorderBrush="#E5E5E5" BorderThickness="0,1,0,0" Padding="8,0">
+            <TextBlock x:Name="HelpText" VerticalAlignment="Center" FontSize="12" Text="Tekan F4 pada keyboard / DOUBLE CLICK tombol kiri mouse pada kolom ini untuk membuka form cari BARANG" TextTrimming="CharacterEllipsis" />
+        </Border>
+    </Grid>
+</UserControl>

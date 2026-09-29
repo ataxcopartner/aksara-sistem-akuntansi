@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aksara.Contracts\Aksara.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="aksara-client.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="aksara-client.example.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <AssemblyName>AKSARA</AssemblyName>
+    <RootNamespace>Aksara.Desktop</RootNamespace>
+    <Product>AKSARA</Product>
+    <Description>Aplikasi Keuangan, Stok, Akuntansi, Rekonsiliasi, dan Administrasi</Description>
+    <Version>0.17.6</Version>
+    <ApplicationIcon>Assets\aksara.ico</ApplicationIcon>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\aksara-logo.png" />
+    <Resource Include="Assets\aksara-appicon.png" />
+    <Resource Include="Assets\aksara.ico" />
+    <Resource Include="Assets\Toolbar\*.png" />
+  </ItemGroup>
+
+</Project>

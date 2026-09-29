@@ -1,0 +1,9 @@
+alter table inventory_category add column if not exists uses_id_per_transaction boolean not null default false;
+alter table inventory_category add column if not exists is_production_material boolean not null default false;
+alter table inventory_category add column if not exists is_product boolean not null default false;
+alter table inventory_category add column if not exists is_not_trade_goods boolean not null default false;
+alter table inventory_category add column if not exists is_not_service_support boolean not null default false;
+alter table inventory_category add column if not exists mov_r1_qty numeric(18,4) not null default 0;
+alter table inventory_category add column if not exists mov_r2_qty numeric(18,4) not null default 0;
+alter table inventory_category add column if not exists mov_r3_qty numeric(18,4) not null default 0;
+alter table inventory_category add column if not exists point_value numeric(18,4) not null default 0;

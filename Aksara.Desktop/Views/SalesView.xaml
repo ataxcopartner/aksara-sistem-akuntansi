@@ -1,0 +1,623 @@
+<UserControl x:Class="Aksara.Desktop.Views.SalesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="Tahoma"
+             FontSize="12">
+    <UserControl.Resources>
+        <Style x:Key="SalesButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#4B252A" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#CDBDC0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ActionBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ActionBorder" Property="Background" Value="#F7E8EA" />
+                                <Setter TargetName="ActionBorder" Property="BorderBrush" Value="#A64A57" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ActionBorder" Property="Background" Value="#EBCBD0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.42" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SalesPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource SalesButtonStyle}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#7C1622" />
+            <Setter Property="BorderBrush" Value="#5C1018" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="PrimaryBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PrimaryBorder" Property="Background" Value="#A6192E" />
+                                <Setter TargetName="PrimaryBorder" Property="BorderBrush" Value="#7C1622" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="PrimaryBorder" Property="Background" Value="#5C1018" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.42" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SalesGoldButtonStyle" TargetType="Button" BasedOn="{StaticResource SalesButtonStyle}">
+            <Setter Property="Foreground" Value="#3C2510" />
+            <Setter Property="Background" Value="#E2B84E" />
+            <Setter Property="BorderBrush" Value="#C9951F" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="GoldBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="GoldBorder" Property="Background" Value="#EDC968" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="GoldBorder" Property="Background" Value="#D6A22E" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.42" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SalesDangerButtonStyle" TargetType="Button" BasedOn="{StaticResource SalesButtonStyle}">
+            <Setter Property="Foreground" Value="#A6192E" />
+            <Setter Property="Background" Value="#FFF8F8" />
+            <Setter Property="BorderBrush" Value="#E1B8BE" />
+        </Style>
+        <Style x:Key="SalesNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource SalesButtonStyle}">
+            <Setter Property="Width" Value="36" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Margin" Value="0,0,5,0" />
+        </Style>
+        <Style x:Key="SalesTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="7,1" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#C8B8BC" />
+            <Setter Property="Background" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="#A6192E" />
+                    <Setter Property="Background" Value="#FFFCFC" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SalesReadOnlyBoxStyle" TargetType="TextBox" BasedOn="{StaticResource SalesTextBoxStyle}">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Foreground" Value="#756568" />
+            <Setter Property="Background" Value="#F6F1F2" />
+            <Setter Property="BorderBrush" Value="#DDD2D4" />
+        </Style>
+        <Style x:Key="SalesDatePickerStyle" TargetType="DatePicker" BasedOn="{StaticResource {x:Type DatePicker}}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="BorderBrush" Value="#C8B8BC" />
+        </Style>
+        <Style x:Key="SalesComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Padding" Value="8,0,4,0" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#C8B8BC" />
+        </Style>
+        <Style x:Key="SalesValueBoxStyle" TargetType="TextBlock">
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Padding" Value="7,4,7,0" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#3C2428" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SalesSummaryValueStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#3C2428" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="6,0" />
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#6A111B" />
+            <Setter Property="Padding" Value="8,0" />
+            <Setter Property="Background" Value="#F0E3E5" />
+            <Setter Property="BorderBrush" Value="#D4C0C4" />
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Foreground="#6A111B"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="7,0" />
+            <Setter Property="BorderBrush" Value="#E7DDDF" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#35272A" />
+            <Style.Triggers>
+                <Trigger Property="AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#FCF8F9" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#F4E1AA" />
+                    <Setter Property="Foreground" Value="#3C2510" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SalesDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#C9B9BC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="GridLinesVisibility" Value="All" />
+            <Setter Property="HorizontalGridLinesBrush" Value="#E7DDDF" />
+            <Setter Property="VerticalGridLinesBrush" Value="#DED0D3" />
+            <Setter Property="AlternationCount" Value="2" />
+            <Setter Property="RowHeight" Value="30" />
+            <Setter Property="ColumnHeaderHeight" Value="32" />
+        </Style>
+        <Style x:Key="SalesTabItemStyle" TargetType="TabItem">
+            <Setter Property="Foreground" Value="#6A5559" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Padding" Value="12,6" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border x:Name="TabBorder"
+                                    Background="#FCFAFA"
+                                    BorderBrush="#D8C8CB"
+                                    BorderThickness="0,0,1,0"
+                                    CornerRadius="0"
+                                    Padding="{TemplateBinding Padding}">
+                                <TextBlock Text="{TemplateBinding Header}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           FontWeight="{TemplateBinding FontWeight}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                            </Border>
+                            <Border x:Name="ActiveIndicator"
+                                    Height="2"
+                                    Margin="10,0"
+                                    Background="#D6A22E"
+                                    VerticalAlignment="Bottom"
+                                    Visibility="Collapsed" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="First">
+                                <Setter TargetName="TabBorder" Property="CornerRadius" Value="4,0,0,4" />
+                            </Trigger>
+                            <Trigger Property="Tag" Value="Last">
+                                <Setter TargetName="TabBorder" Property="CornerRadius" Value="0,4,4,0" />
+                                <Setter TargetName="TabBorder" Property="BorderThickness" Value="0" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="#F6E8C1" />
+                                <Setter Property="Foreground" Value="#4B2D12" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="#7C1622" />
+                                <Setter TargetName="TabBorder" Property="BorderBrush" Value="#A85A65" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="ActiveIndicator" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SalesTabControlStyle" TargetType="TabControl">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#D3C4C7" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                Padding="0"
+                                SnapsToDevicePixels="True">
+                            <UniformGrid IsItemsHost="True"
+                                         Rows="1"
+                                         Columns="3"
+                                         Background="Transparent"
+                                         HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Stretch" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SalesPanelStyle" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#D7C9CC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+        <Style x:Key="SalesFieldLabelStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,12,0" />
+            <Setter Property="Foreground" Value="#594448" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+        <Style x:Key="SalesSecondaryFieldLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource SalesFieldLabelStyle}">
+            <Setter Property="Margin" Value="18,0,12,0" />
+        </Style>
+        <Style x:Key="SalesInlineFieldLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource SalesFieldLabelStyle}">
+            <Setter Property="Margin" Value="20,0,14,0" />
+        </Style>
+        <Style x:Key="SalesUnitLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource SalesFieldLabelStyle}">
+            <Setter Property="Margin" Value="8,0,0,0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="SalesRoot" Background="#F7F3F4" ClipToBounds="True">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="SalesHeaderRow" Height="52" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="140" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="0" />
+        </Grid.RowDefinitions>
+
+        <Border x:Name="StandardSalesHeader" Grid.Row="0" Margin="12,8,12,4" Style="{StaticResource SalesPanelStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="245" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="175" />
+                    <ColumnDefinition Width="235" />
+                    <ColumnDefinition Width="48" />
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="ExclusiveModeCheckBox" Content="Exclusive Mode" VerticalAlignment="Center" Margin="14,0,0,0" FontWeight="SemiBold" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="18,0,12,0">
+                    <TextBlock Text="Status" Foreground="#806E71" VerticalAlignment="Center" />
+                    <Rectangle Width="1" Height="18" Fill="#E2D7D9" Margin="14,0,0,0" />
+                </StackPanel>
+                <Border Grid.Column="2" Background="#F7E8EA" BorderBrush="#E7C9CE" BorderThickness="1" CornerRadius="3" Margin="6">
+                    <TextBlock x:Name="ModeStatusText" Text="TAMBAH DATA" Foreground="#7C1622" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <Border Grid.Column="3" Background="#FFF5DA" BorderBrush="#E8CA75" BorderThickness="1" CornerRadius="3" Margin="6">
+                    <TextBlock x:Name="ServerStatusText" Text="DATA 0 / 0" Foreground="#5A3B16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <Border Grid.Column="4" BorderBrush="#E2D7D9" BorderThickness="1,0,0,0">
+                    <Grid Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Rectangle Width="7" Height="7" Fill="#7C1622" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Rectangle Width="7" Height="7" Fill="#D6A22E" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                        <Rectangle Width="7" Height="7" Fill="#D6A22E" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <Rectangle Width="7" Height="7" Fill="#7C1622" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border x:Name="ServiceSalesHeader" Grid.Row="0" Margin="12,7,12,4" Visibility="Collapsed" Background="#FFFFFF" BorderBrush="#CDBDC0" BorderThickness="1" CornerRadius="5">
+            <Grid Margin="16,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="185" />
+                    <ColumnDefinition Width="220" />
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Penjualan Jasa" FontSize="18" FontWeight="Bold" Foreground="#74101C" />
+                    <TextBlock Text="Nota jasa, tarif, dan pembayaran customer" Margin="0,2,0,0" Foreground="#765F63" />
+                </StackPanel>
+                <Border Grid.Column="1" Background="#F7E8EA" BorderBrush="#E7C9CE" BorderThickness="1" CornerRadius="4" Margin="8,9">
+                    <TextBlock Text="{Binding ElementName=ModeStatusText, Path=Text}" Foreground="#7C1622" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <Border Grid.Column="2" Background="#FFF5DA" BorderBrush="#E8CA75" BorderThickness="1" CornerRadius="4" Margin="8,9,0,9">
+                    <TextBlock Text="{Binding ElementName=ServerStatusText, Path=Text}" Foreground="#5A3B16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Margin="12,4,12,4" Style="{StaticResource SalesPanelStyle}">
+            <Grid Margin="14,8,14,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="74" />
+                    <ColumnDefinition Width="155" />
+                    <ColumnDefinition Width="102" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="78" />
+                    <ColumnDefinition Width="68" />
+                    <ColumnDefinition Width="116" />
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="44" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31" />
+                    <RowDefinition Height="31" />
+                    <RowDefinition Height="31" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="DocumentDateLabel" Text="Tgl.Nota" Style="{StaticResource SalesFieldLabelStyle}" />
+                <DatePicker x:Name="DocumentDatePicker" Grid.Column="1" SelectedDate="{Binding DocumentDate}" Style="{StaticResource SalesDatePickerStyle}" />
+                <TextBlock x:Name="CustomerCodeLabel" Grid.Column="2" Text="Kode Cust." Style="{StaticResource SalesSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="CustomerCodeBox" Grid.Column="3" Style="{StaticResource SalesTextBoxStyle}" PreviewKeyDown="CustomerCodeBox_PreviewKeyDown" MouseDoubleClick="CustomerCodeBox_MouseDoubleClick" />
+                <TextBlock x:Name="TransactionTypeLabel" Grid.Column="5" Text="Trans." Style="{StaticResource SalesSecondaryFieldLabelStyle}" />
+                <ComboBox Grid.Column="6" x:Name="TransactionType" SelectedIndex="1" Style="{StaticResource SalesComboBoxStyle}" HorizontalContentAlignment="Center" SelectionChanged="TransactionType_SelectionChanged">
+                    <ComboBoxItem Content="T" />
+                    <ComboBoxItem Content="K" />
+                </ComboBox>
+                <TextBlock x:Name="DueDateLabel" Grid.Column="7" Text="J.Tempo" Style="{StaticResource SalesInlineFieldLabelStyle}" />
+                <DatePicker x:Name="DueDatePicker" Grid.Column="8" SelectedDate="{Binding DueDate}" Style="{StaticResource SalesDatePickerStyle}" />
+                <TextBox x:Name="DueDaysBox" Grid.Column="9" Text="30" HorizontalContentAlignment="Right" Style="{StaticResource SalesTextBoxStyle}" LostFocus="DueDaysBox_LostFocus" />
+                <TextBlock x:Name="DueDaysLabel" Grid.Column="10" Text="Hr." Style="{StaticResource SalesUnitLabelStyle}" />
+
+                <TextBlock x:Name="DocumentNumberLabel" Grid.Row="1" Text="No.Nota" Style="{StaticResource SalesFieldLabelStyle}" />
+                <TextBox x:Name="DocumentNumberBox" Grid.Row="1" Grid.Column="1" CharacterCasing="Upper" Style="{StaticResource SalesTextBoxStyle}" TextChanged="DocumentNumberBox_TextChanged" />
+                <TextBlock x:Name="CustomerNameLabel" Grid.Row="1" Grid.Column="2" Text="Toko/PT" Style="{StaticResource SalesSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="CustomerNameBox" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource SalesReadOnlyBoxStyle}" />
+                <TextBlock x:Name="SalespersonLabel" Grid.Row="1" Grid.Column="5" Text="Sls." Style="{StaticResource SalesSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="SalesCodeBox" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" CharacterCasing="Upper" Style="{StaticResource SalesTextBoxStyle}" PreviewKeyDown="SalesCodeBox_PreviewKeyDown" MouseDoubleClick="SalesCodeBox_MouseDoubleClick" GotKeyboardFocus="SalesCodeBox_GotKeyboardFocus" ToolTip="Tekan F4 / double-click untuk memilih sales" />
+                <Button x:Name="PurchasePriceCheckButton" Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2" Content="Cek Harga Beli" Width="145" Height="28" HorizontalAlignment="Left" Style="{StaticResource SalesButtonStyle}" Click="PurchasePriceCheck_Click" ToolTip="Buka riwayat harga beli dan HPP barang" />
+
+                <TextBlock x:Name="CustomerAddressLabel" Grid.Row="2" Grid.Column="2" Text="Alamat" Style="{StaticResource SalesSecondaryFieldLabelStyle}" />
+                <TextBox x:Name="CustomerAddressBox" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="8" Style="{StaticResource SalesReadOnlyBoxStyle}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="360" />
+            </Grid.ColumnDefinitions>
+            <TabControl x:Name="DetailTabs" Grid.Row="0" Grid.Column="0" Width="344" HorizontalAlignment="Left" Margin="0,2,0,5" Style="{StaticResource SalesTabControlStyle}" SelectionChanged="DetailTabs_SelectionChanged">
+                <TabItem x:Name="DetailsTab" Header="Rincian" Tag="First" Style="{StaticResource SalesTabItemStyle}" />
+                <TabItem x:Name="HppTab" Header="HPP" Style="{StaticResource SalesTabItemStyle}" />
+                <TabItem x:Name="LineNotesTab" Header="Catatan" Tag="Last" Style="{StaticResource SalesTabItemStyle}" />
+            </TabControl>
+            <Border x:Name="ServiceDetailsHeading"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Width="225"
+                    HorizontalAlignment="Left"
+                    Margin="0,2,0,5"
+                    Visibility="Collapsed"
+                    Background="#7C1622"
+                    BorderBrush="#5C1018"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <TextBlock Text="Rincian Jasa"
+                           Foreground="White"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="#E2BE5B" BorderThickness="1" Background="#FFF3CF" CornerRadius="4" Margin="5,2,0,5">
+                <TextBlock x:Name="TransactionBanner" Text="KREDIT" Foreground="#7C1622" FontSize="17" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <DataGrid x:Name="LinesGrid" ItemsSource="{Binding Lines}" Style="{StaticResource SalesDataGridStyle}" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column" CellEditEnding="Lines_CellEditEnding" PreviewKeyDown="LinesGrid_PreviewKeyDown" MouseDoubleClick="LinesGrid_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lok." Binding="{Binding WarehouseCode}" Width="48" />
+                        <DataGridTextColumn Header="Kode Barang" Binding="{Binding ItemCode}" Width="120" />
+                        <DataGridTextColumn Header="Nama Barang" Binding="{Binding ItemName}" Width="*" MinWidth="300" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Byk.Koli" Binding="{Binding PackageQuantity, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="75" />
+                        <DataGridTextColumn Header="Banyak" Binding="{Binding Quantity, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="75" />
+                        <DataGridTemplateColumn Header="Sat." Width="72" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="UnitLookup_Click" ToolTip="Lihat daftar satuan" Background="Transparent" BorderThickness="0" Padding="2,0" HorizontalContentAlignment="Stretch">
+                                        <DockPanel LastChildFill="True">
+                                            <TextBlock Text="▾" DockPanel.Dock="Right" Foreground="#7C1622" Margin="2,0,0,0" />
+                                            <TextBlock Text="{Binding Unit}" TextTrimming="CharacterEllipsis" />
+                                        </DockPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Harga" Binding="{Binding UnitPrice, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="95" />
+                        <DataGridTextColumn Header="Disc." Binding="{Binding DiscountPercent, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Width="70" />
+                        <DataGridTextColumn Header="Jumlah" Binding="{Binding Total, StringFormat=N0}" IsReadOnly="True" Width="105" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="HppGrid" ItemsSource="{Binding Lines}" Style="{StaticResource SalesDataGridStyle}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" HeadersVisibility="Column" Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Kode Barang" Binding="{Binding ItemCode}" Width="135" />
+                        <DataGridTextColumn Header="Nama Barang" Binding="{Binding ItemName}" Width="*" MinWidth="430" />
+                        <DataGridTextColumn Header="Banyak" Binding="{Binding Quantity, StringFormat=N2}" Width="95" />
+                        <DataGridTextColumn Header="Sat." Binding="{Binding Unit}" Width="70" />
+                        <DataGridTextColumn Header="HPP" Binding="{Binding FifoUnitCost, StringFormat=N2}" Width="130" />
+                        <DataGridTextColumn Header="Total HPP" Binding="{Binding CostAmount, StringFormat=N2}" Width="140" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="CttnGrid" ItemsSource="{Binding Lines}" Style="{StaticResource SalesDataGridStyle}" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column" Visibility="Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Kode Barang" Binding="{Binding ItemCode}" Width="135" />
+                        <DataGridTextColumn Header="Nama Barang" Binding="{Binding ItemName}" Width="*" MinWidth="400" />
+                        <DataGridTextColumn Header="Banyak" Binding="{Binding Quantity, StringFormat=N2}" Width="90" />
+                        <DataGridTextColumn Header="Sat." Binding="{Binding Unit}" Width="70" />
+                        <DataGridTextColumn Header="Catatan" Binding="{Binding LineNote, UpdateSourceTrigger=PropertyChanged}" Width="360" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="18,8,18,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.05*" MinWidth="245" />
+                <ColumnDefinition Width="14" />
+                <ColumnDefinition Width="1.35*" MinWidth="360" />
+                <ColumnDefinition Width="14" />
+                <ColumnDefinition Width="1.1*" MinWidth="285" />
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource SalesPanelStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="NotesPanelTitle" Text="Catatan" Margin="12,0" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#7C1622" />
+                    <TextBox x:Name="NotesBox" Grid.Row="1" AcceptsReturn="True" TextWrapping="Wrap" BorderBrush="#E4D9DB" BorderThickness="1" Background="#FCFAFA" Margin="12,0,12,10" Padding="8,5" FontSize="12" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource SalesPanelStyle}">
+                <Grid Margin="12,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="78" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="18" />
+                        <ColumnDefinition Width="76" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="29" />
+                        <RowDefinition Height="29" />
+                        <RowDefinition Height="29" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="TransactionCalculationTitle" Text="Perhitungan Transaksi" Grid.ColumnSpan="3" FontWeight="SemiBold" Foreground="#7C1622" VerticalAlignment="Center" />
+                    <CheckBox Grid.Column="3" Grid.ColumnSpan="2" Content="Termasuk PPN" HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Row="1" Text="Diskon %" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBox x:Name="DiscountPercentBox" Grid.Row="1" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource SalesTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+                    <TextBlock x:Name="NetLabel" Grid.Row="1" Grid.Column="3" Text="Netto" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBlock x:Name="NetBeforeTaxText" Grid.Row="1" Grid.Column="4" Text="0" FontWeight="Bold" Style="{StaticResource SalesValueBoxStyle}" />
+
+                    <TextBlock Grid.Row="2" Text="Diskon Rp" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBox x:Name="DiscountAmountBox" Grid.Row="2" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource SalesTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="Kas" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBox x:Name="CashAccountBox" Grid.Row="2" Grid.Column="4" CharacterCasing="Upper" Style="{StaticResource SalesTextBoxStyle}" PreviewKeyDown="CashAccountBox_PreviewKeyDown" MouseDoubleClick="CashAccountBox_MouseDoubleClick" GotKeyboardFocus="CashAccountBox_GotKeyboardFocus" ToolTip="Tekan F4 / double-click untuk memilih kas" />
+
+                    <TextBlock Grid.Row="3" Text="PPN %" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBox x:Name="TaxPercentBox" Grid.Row="3" Grid.Column="1" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource SalesTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+                    <TextBlock Grid.Row="3" Grid.Column="3" Text="Uang Muka" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBox x:Name="DownPaymentBox" Grid.Row="3" Grid.Column="4" Text="0" HorizontalContentAlignment="Right" Style="{StaticResource SalesTextBoxStyle}" TextChanged="TotalsInput_TextChanged" />
+
+                    <TextBlock x:Name="DiscountTotalText" Text="0" Visibility="Collapsed" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="4" Style="{StaticResource SalesPanelStyle}" Background="#FFFDF8">
+                <Grid Margin="12,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="112" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="22" />
+                        <RowDefinition Height="22" />
+                        <RowDefinition Height="22" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="PaymentSummaryTitle" Text="Ringkasan Pembayaran" Grid.ColumnSpan="2" FontWeight="SemiBold" Foreground="#7C1622" VerticalAlignment="Center" />
+                    <TextBlock x:Name="TotalLabel" Grid.Row="1" Text="Net + PPN" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBlock x:Name="TotalText" Grid.Row="1" Grid.Column="1" Text="0" Style="{StaticResource SalesSummaryValueStyle}" />
+                    <TextBlock Grid.Row="2" Text="UM Order" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="0" Style="{StaticResource SalesSummaryValueStyle}" />
+                    <TextBlock Grid.Row="3" Text="Cicilan" Style="{StaticResource SalesFieldLabelStyle}" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="0" Style="{StaticResource SalesSummaryValueStyle}" />
+                    <TextBlock Grid.Row="4" Text="Sisa Bayar" Foreground="#7C1622" FontWeight="SemiBold" VerticalAlignment="Center" />
+                    <Border Grid.Row="4" Grid.Column="1" Background="#FFF1C9" BorderBrush="#E2BE5B" BorderThickness="1" CornerRadius="4" Margin="0,3,0,0">
+                        <TextBlock x:Name="BalanceText" Text="0" FontSize="21" Foreground="#7C1622" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" Padding="6,1" />
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="4" Margin="12,9,12,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource SalesNavigationButtonStyle}" Content="◀◀" Click="NavigateFirst_Click" ToolTip="Data pertama" />
+                <Button Style="{StaticResource SalesNavigationButtonStyle}" Content="◀" Click="NavigatePrevious_Click" ToolTip="Data sebelumnya" />
+                <Button Style="{StaticResource SalesNavigationButtonStyle}" Content="●" Click="NavigateLookup_Click" ToolTip="Pilih data" />
+                <Button Style="{StaticResource SalesNavigationButtonStyle}" Content="▶" Click="NavigateNext_Click" ToolTip="Data berikutnya" />
+                <Button Style="{StaticResource SalesNavigationButtonStyle}" Content="▶▶" Click="NavigateLast_Click" ToolTip="Data terakhir" />
+            </StackPanel>
+            <UniformGrid Grid.Column="1" Rows="1" Columns="8" HorizontalAlignment="Right" Width="792">
+                <Button Style="{StaticResource SalesButtonStyle}" Click="Search_Click" ToolTip="ALT+I"><AccessText Text="Car_i" /></Button>
+                <Button Style="{StaticResource SalesButtonStyle}" Click="Add_Click" ToolTip="ALT+A"><AccessText Text="T_ambah" /></Button>
+                <Button Style="{StaticResource SalesButtonStyle}" Click="Cancel_Click" ToolTip="ALT+B"><AccessText Text="_Batal" /></Button>
+                <Button x:Name="SaveButton" Style="{StaticResource SalesPrimaryButtonStyle}" Click="Save_Click" ToolTip="ALT+S"><AccessText Text="_Simpan" /></Button>
+                <Button x:Name="SavePrintButton" Style="{StaticResource SalesGoldButtonStyle}" Click="SavePrint_Click" ToolTip="ALT+K"><AccessText Text="Smpn&amp;Ct_k" /></Button>
+                <Button x:Name="DeleteButton" Style="{StaticResource SalesDangerButtonStyle}" Click="Delete_Click" ToolTip="ALT+H"><AccessText Text="_Hapus" /></Button>
+                <Button x:Name="RestoreButton" Style="{StaticResource SalesButtonStyle}" Click="Restore_Click" ToolTip="ALT+L"><AccessText Text="Bt_l.Hapus" /></Button>
+                <Button Style="{StaticResource SalesButtonStyle}" Click="Close_Click" ToolTip="ALT+U"><AccessText Text="Tut_up" /></Button>
+            </UniformGrid>
+        </Grid>
+
+        <Border Grid.Row="5" Visibility="Collapsed" Background="#FFF8E6" BorderBrush="#E8D395" BorderThickness="0,1,0,0" Padding="12,0">
+            <TextBlock x:Name="HelpText" VerticalAlignment="Center" FontSize="11.5" Foreground="#654619" Text="F4 atau klik dua kali pada kolom untuk membuka pencarian barang" TextTrimming="CharacterEllipsis" />
+        </Border>
+    </Grid>
+</UserControl>

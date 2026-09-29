@@ -1,0 +1,6 @@
+@Aksara.Server_HostAddress = http://localhost:5052
+
+GET {{Aksara.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
